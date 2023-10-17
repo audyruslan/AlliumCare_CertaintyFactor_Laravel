@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="page-content">
-        <section class="section"> 
+        <section class="section">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">{{ $title }}</h4>
@@ -83,11 +83,29 @@
                                     </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <img src="{{ url('images/penyakit/', unserialize($riwayat->cf_max)[3]) }}" width="250"
-                                        height="120" alt="">
+                                    <img src="{{ url('images/penyakit/', unserialize($riwayat->cf_max)[5]) }}"
+                                        width="250" height="120" alt="">
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mt-5">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="alert alert-secondary">
+                                        <h5 class="font-weight-bold">Detail Penyakit</h5>
+                                        {!! unserialize($riwayat->cf_max)[3] !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="alert alert-secondary">
+                                        <h5 class="font-weight-bold">Saran Penyakit</h5>
+                                        {!! unserialize($riwayat->cf_max)[4] !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mt-3 text-center">
                             <a href="{{ asset("storage/downloads/$riwayat->file_pdf") }}" target="_blank"
                                 class="btn btn-primary mr-1"><i class="fas fa-print mr-1"></i> Print</a>

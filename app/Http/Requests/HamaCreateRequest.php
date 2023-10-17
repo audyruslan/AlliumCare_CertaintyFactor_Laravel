@@ -24,23 +24,19 @@ class HamaCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|max:255|unique:hamas',
-            'name' => 'required|max:255'
+            'name' => 'required',
+            'det_hama' => 'required',
+            'srn_hama' => 'required'
         ];
     }
 
-    public function attributes()
-    {
-    return [
-        'code' => 'Code Hama',
-      ];
-    }
 
     public function messages()
     {
-    return [
-        'code.unique' => 'Code Hama Sudah Ada!',
-        'name.required' => 'Hama Tidak Boleh Kosong.'
-      ];
+        return [
+            'name.required' => 'Nama Hama Tidak Boleh Kosong.',
+            'det_hama.required' => 'Detail Hama Tidak Boleh Kosong.',
+            'srn_hama.required' => 'Saran Hama Tidak Boleh Kosong.'
+        ];
     }
 }

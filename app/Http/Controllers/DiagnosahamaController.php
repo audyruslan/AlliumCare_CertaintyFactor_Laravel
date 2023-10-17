@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DiagnosaHamaRequest;
 use App\Models\Gejalahama;
 use App\Models\Hasilhama;
 use App\Models\Value;
@@ -121,10 +122,10 @@ class DiagnosahamaController extends Controller
         }
         if (count($final) - 1 == $key) {
           if ($cf_max == null) {
-            $cf_max = [$hasil_cf, $final[0]->id, "{$final[0]->name} ({$final[0]->code})", $final[0]->images];
+            $cf_max = [$hasil_cf, $final[0]->id, "{$final[0]->name} ({$final[0]->code})", $final[0]->det_hama, $final[0]->srn_hama, $final[0]->images];
           } else {
             $cf_max = ($hasil_cf > $cf_max[0])
-              ? [$hasil_cf, $final[0]->id, "{$final[0]->name} ({$final[0]->code})", $final[0]->images]
+              ? [$hasil_cf, $final[0]->id, "{$final[0]->name} ({$final[0]->code})", $final[0]->det_hama, $final[0]->srn_hama, $final[0]->images]
               : $cf_max;
           }
 
@@ -167,6 +168,10 @@ class DiagnosahamaController extends Controller
       }
     }
 
+    if (empty($cf_max)) {
+      $cf_max = [0, 0];
+    }
+
     return [
       'id_hama' => $cf_max[1],
       'hasil_diagnosa' => $hasil_diagnosa,
@@ -175,7 +180,7 @@ class DiagnosahamaController extends Controller
     ];
   }
 
-  public function diagnosa(Request $request)
+  public function diagnosa(DiagnosaHamaRequest $request)
   {
     $data = $request->all();
 
@@ -183,8 +188,15 @@ class DiagnosahamaController extends Controller
 
     $name = $request->name;
 
-    if ($result['cf_max'] == null) {
-      return back()->with('status', 'Silahkan Pilih Salah Satu Kondisi dari Gejala Hama');
+    // Memeriksa jika tidak ada kondisi yang dipilih
+    $selectedConditions = array_filter($data['diagnosa']);
+    if (empty($selectedConditions)) {
+      return back()->with('status', 'Silakan Pilih Kondisi dari Gejala Hama terlebih dahulu.');
+    }
+
+    // Memeriksa jika hanya satu kondisi yang dipilih
+    if (count($selectedConditions) === 1) {
+      return back()->with('status', 'Pilih lebih dari satu kondisi dari Gejala Hama.');
     }
 
     $riwayat = Hasilhama::create([

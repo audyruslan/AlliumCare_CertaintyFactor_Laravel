@@ -466,6 +466,15 @@
 .form-group[class*="has-icon-"].has-icon-right .form-control-icon {
     right: 0;
 }
+.form-group[class*="has-icon-"].has-icon-flex .form-control {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+.form-group[class*="has-icon-"].has-icon-flex .form-control-icon {
+    left: 0;
+    right: 0;
+}
 .form-group[class*="has-icon-"] .form-control:focus ~ .form-control-icon i,
 .form-group[class*="has-icon-"] .form-control:focus ~ .form-control-icon svg {
     color: #55efc4;

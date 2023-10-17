@@ -21,8 +21,15 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="name">Nama Lengkap</label>
-                                        <input type="text" id="name" class="form-control" name="name"
-                                            placeholder="Masukkan Nama Lengkap" autocomplete="off" required>
+                                        <input type="text" id="name"
+                                            class="form-control  @error('name') is-invalid @enderror" name="name"
+                                            placeholder="Masukkan Nama Lengkap" autocomplete="off">
+                                        @error('name')
+                                            <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                {{ $message }}.
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <table class="table table-sm">
@@ -48,7 +55,8 @@
                                                     <select class="form-select" name="diagnosa[]">
                                                         <option value="" selected>--Silahkan Pilih--</option>
                                                         @foreach ($kondisihamas as $kondisihama)
-                                                            <option value="{{ $gejalahama->id }}+{{ $kondisihama->value }}">
+                                                            <option
+                                                                value="{{ $gejalahama->id }}+{{ $kondisihama->value }}">
                                                                 {{ $kondisihama->name }}
                                                             </option>
                                                         @endforeach

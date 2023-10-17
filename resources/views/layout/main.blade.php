@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('mazer/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('mazer/css/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('mazer/images/favicon.svg') }}" type="image/x-icon">
 </head>
 
@@ -108,6 +109,24 @@
     </script>
 
     <script src="{{ asset('mazer/vendors/ckeditor/ckeditor.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            const passwordInput = $("#passwordInput");
+            const togglePassword = $("#togglePassword");
+
+            togglePassword.on("click", function() {
+                if (passwordInput.attr("type") === "password") {
+                    passwordInput.attr("type", "text");
+                    togglePassword.removeClass("bi-eye-slash").addClass("bi-eye");
+                } else {
+                    passwordInput.attr("type", "password");
+                    togglePassword.removeClass("bi-eye").addClass("bi-eye-slash");
+                }
+            });
+        });
+    </script>
 
     <script>
         // CKEditor Detail Hama

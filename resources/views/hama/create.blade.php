@@ -30,8 +30,7 @@
                                         <label for="name">Nama Hama</label>
                                         <input type="text" id="name"
                                             class="form-control @error('name') is-invalid @enderror"
-                                            value="{{ old('name') }}" id="name" name="name" autocomplete="off"
-                                            required>
+                                            value="{{ old('name') }}" id="name" name="name" autocomplete="off">
                                         @error('name')
                                             <div class="invalid-feedback">
                                                 <i class="bx bx-radio-circle"></i>
@@ -42,7 +41,7 @@
                                     <div class="form-group mb-3">
                                         <label for="image" class="form-label">Image Hama</label>
                                         <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                            value="{{ old('image') }}" id="image" name="image" required>
+                                            value="{{ old('image') }}" id="image" name="image">
                                         @error('image')
                                             <div class="invalid-feedback">
                                                 <i class="bx bx-radio-circle"></i>
