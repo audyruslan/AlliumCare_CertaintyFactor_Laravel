@@ -31,40 +31,43 @@
                     </table>
 
                     @foreach (unserialize($riwayat->hasil_diagnosa) as $diagnosa)
-                        <div class="card card-body p-0 mt-5 border" style="box-shadow: none !important;">
-                            <div class="card-header bg-primary text-white p-2">
-                                <h6 class="font-weight-bold text-light">Tabel Perhitungan: {{ $diagnosa['nama_hama'] }}
-                                    ({{ $diagnosa['code_hama'] }})
-                                </h6>
-                            </div>
-                            <table class="table table-hover">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>Gejala</th>
-                                        <th>CF User</th>
-                                        <th>CF Expert</th>
-                                        <th>CF (H, E)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($diagnosa['gejala'] as $gejala)
+                        @if ($diagnosa['hasil_cf'] != 0.0)
+                            <div class="card card-body p-0 mt-5 border" style="box-shadow: none !important;">
+                                <div class="card-header bg-primary text-white p-2">
+                                    <h6 class="font-weight-bold text-light">Tabel Perhitungan: {{ $diagnosa['nama_hama'] }}
+                                        ({{ $diagnosa['code_hama'] }})
+                                    </h6>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead class="thead-light">
                                         <tr>
-                                            <td>{{ $gejala['code'] }} - {{ $gejala['nama'] }}</td>
-                                            <td>{{ $gejala['cf_user'] }}</td>
-                                            <td>{{ $gejala['cf_role'] }}</td>
-                                            <td>{{ $gejala['hasil_perkalian'] }}</td>
+                                            <th>Gejala</th>
+                                            <th>CF User</th>
+                                            <th>CF Expert</th>
+                                            <th>CF (H, E)</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                                <tfoot class="font-weight-bold">
-                                    <tr>
-                                        <td scope="row">Nilai CF</td>
-                                        <td><span class="text-danger">{{ number_format($diagnosa['hasil_cf'], 3) }}</span>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($diagnosa['gejala'] as $gejala)
+                                            <tr>
+                                                <td>{{ $gejala['code'] }} - {{ $gejala['nama'] }}</td>
+                                                <td>{{ $gejala['cf_user'] }}</td>
+                                                <td>{{ $gejala['cf_role'] }}</td>
+                                                <td>{{ $gejala['hasil_perkalian'] }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot class="font-weight-bold">
+                                        <tr>
+                                            <td scope="row">Nilai CF</td>
+                                            <td><span
+                                                    class="text-danger">{{ number_format($diagnosa['hasil_cf'], 3) }}</span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        @endif
                     @endforeach
 
                     <div class="mt-5">

@@ -34,11 +34,9 @@
                                                     class="form-control form-control-xl" placeholder="Password">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-shield-lock"></i>
-                                                    <i id="togglePassword" class="bi bi-eye-slash float-end mr-5"></i>
+                                                    <i id="togglePassword" class="bi bi-eye-slash float-end mr-3"></i>
                                                 </div>
                                             </div>
-
-
 
                                             <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                                         </form>

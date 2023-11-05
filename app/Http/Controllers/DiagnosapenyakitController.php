@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DiagnosaPenyakitRequest;
 use App\Models\Gejalapenyakit;
 use App\Models\Hasilpenyakit;
 use App\Models\Value;
@@ -58,7 +59,7 @@ class DiagnosapenyakitController extends Controller
 
         foreach ($gejala->penyakits as $penyakit) {
           if (empty($data_penyakit[$penyakit->id])) {
-            $data_penyakit[$penyakit->id] = [$penyakit, [$gejala, $opts[1], $penyakit->pivot->value]]; 
+            $data_penyakit[$penyakit->id] = [$penyakit, [$gejala, $opts[1], $penyakit->pivot->value]];
           } else {
             array_push($data_penyakit[$penyakit->id], [$gejala, $opts[1], $penyakit->pivot->value]);
           }
@@ -174,7 +175,7 @@ class DiagnosapenyakitController extends Controller
     ];
   }
 
-  public function diagnosa(Request $request)
+  public function diagnosa(DiagnosaPenyakitRequest $request)
   {
     $data = $request->all();
 
